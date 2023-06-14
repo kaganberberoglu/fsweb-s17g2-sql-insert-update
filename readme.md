@@ -20,8 +20,6 @@ Tablo ilişiklerini görmek için [ktphn.png] dosyasına göz atın.
 
 Yazdığınız sorguları buradan test edebilirsiniz: [https://ergineer.com/assets/materials/fkg36so5-kutuphanebilgisistemi-sql/]
 
-
-
 # Görevler
 Aşağıda istenilen sonuçlara ulaşabilmek için gerekli SQL sorgularını yazın. 
 
@@ -43,7 +41,9 @@ Aşağıda istenilen sonuçlara ulaşabilmek için gerekli SQL sorgularını yaz
 4) Öğrenci tablosundaki rastgele bir öğrenciyi yazarlar tablosuna yazar olarak ekleyiniz.
 
 	insert into yazar (yazarad, yazarsoyad)
-    select ograd, ogrsoyad from ogrenci order by rand() limit 1;
+    select ograd, ogrsoyad from ogrenci 
+	order by rand() 
+	limit 1;
 
 5) Öğrenci numarası 10 ile 30 arasındaki öğrencileri yazar olarak ekleyiniz.
 
@@ -53,7 +53,8 @@ Aşağıda istenilen sonuçlara ulaşabilmek için gerekli SQL sorgularını yaz
 6) Nurettin Belek isimli yazarı ekleyip yazar numarasını yazdırınız.
 (Not: Otomatik arttırmada son arttırılan değer @@IDENTITY değişkeni içinde tutulur.)
 
-	insert into yazar (yazarad, yazarsoyad) values ("Nurettin", "Belek")
+	insert into yazar (yazarad, yazarsoyad) 
+	values ("Nurettin", "Belek")
 	select @@IDENTITY;
 
 7) 10B sınıfındaki öğrenci numarası 3 olan öğrenciyi 10C sınıfına geçirin.
@@ -110,7 +111,7 @@ Aşağıda istenilen sonuçlara ulaşabilmek için gerekli SQL sorgularını yaz
 	create procedure ogrencilistesi()
 	BEGIN
 	select * from ogrenci;
-	END
+	END;
 	
 17) Öğrenci tablosuna yeni öğrenci eklemek için "ekle" adında bir prosedür oluşturun.
 	
@@ -125,7 +126,7 @@ Aşağıda istenilen sonuçlara ulaşabilmek için gerekli SQL sorgularını yaz
 	insert into ogrenci (ograd, ogrsoyad, cinsiyet, sinif, ogrno)
 	values
 	(ad, soyad, cinsiyet, sinif, numara);
-	END
+	END;
 
 18) Öğrenci noya göre öğrenci silebilmeyi sağlayan "sil" adında bir prosedür oluşturun.
 
@@ -135,7 +136,7 @@ Aşağıda istenilen sonuçlara ulaşabilmek için gerekli SQL sorgularını yaz
 	BEGIN
 	delete from ogrenci
 	where ogrno = numara;
-	END
+	END;
 	
 19) Öğrenci numarasını kullanarak kolay bir biçimde öğrencinin sınıfını değiştirebileceğimiz bir prosedür oluşturun.
 
@@ -147,7 +148,7 @@ Aşağıda istenilen sonuçlara ulaşabilmek için gerekli SQL sorgularını yaz
 	update ogrenci
 	set sinif = yeniSinif
 	where ogrno = numara;
-	END
+	END;
 
 20) Öğrenci adı ve soyadını "Ad Soyad" olarak birleştirip, ad soyada göre kolayca arama yapmayı sağlayan bir prosedür yazın.
 
@@ -158,7 +159,7 @@ Aşağıda istenilen sonuçlara ulaşabilmek için gerekli SQL sorgularını yaz
 	BEGIN
 	select concat (ograd, ogrsoyad) as 'Adi Soyadi' from ogrenci
 	where ograd = ad and ogrsoyad = soyad;
-	END
+	END;
 
 21) Daha önceden oluşturduğunu tüm prosedürleri silin.
 
@@ -168,7 +169,6 @@ Aşağıda istenilen sonuçlara ulaşabilmek için gerekli SQL sorgularını yaz
 	DROP PROCEDURE IF EXISTS sil;
 	DROP PROCEDURE IF EXISTS ogrenciSinifDegistir;
 
-#Esnek görevler (Esnek görevlerin hepsini Select in Select ile gerçekleştirmeniz beklenmektedir.)
 22) Select in select yöntemiyle dram türündeki kitapları listeleyiniz.
 	
 	select kitapadi from kitap
